@@ -109,3 +109,27 @@ if (company == 'Netscape') {
 } else {
   alert('Wrong.');
 }
+
+
+
+
+let user=prompt("Enter user name: ")
+if(user=="Admin"){
+    let password=prompt("Enter password :")
+    if(password=="TheMaster"){
+        return alert("WEL COME")
+    }
+    if(password=="Other"){
+        return alert("Wrong password")
+    }
+    if(password=="Canceled"){
+      return  alert("Canceled")
+    }
+    return
+}
+    if(user=="Other"){
+       return alert("idont know")
+    }
+    if(user=="Cancel"){
+      return  alert("Canceled")
+    }
