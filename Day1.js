@@ -215,3 +215,80 @@ let bitR = 5 >> 1; // Right shift
 let bitZR = 5 >>> 1; // Zero-fill right shift
 
 console.log(bitA, bitO, bitX, bitN, bitL, bitR, bitZR);
+
+
+
+
+// --- Basic comparisons ---
+alert(2 > 1);   // true
+alert(2 == 1);  // false
+alert(2 != 1);  // true
+
+// Assign comparison result to a variable
+let result = 5 > 4;
+alert(result);  // true
+
+
+// --- String comparison ---
+alert('Z' > 'A');      // true
+alert('Glow' > 'Glee'); // true
+alert('Bee' > 'Be');   // true
+
+
+// --- Comparison of different types ---
+alert('2' > 1);  // true ('2' converted to number 2)
+alert('01' == 1); // true ('01' converted to number 1)
+
+// Booleans to numbers
+alert(true == 1);  // true
+alert(false == 0); // true
+
+
+// --- Funny consequence ---
+let a = 0;
+alert(Boolean(a)); // false
+
+let b = "0";
+alert(Boolean(b)); // true
+
+alert(a == b); // true (string "0" converted to number 0)
+
+
+// --- Strict equality === ---
+alert(0 == false);  // true (type conversion)
+alert('' == false); // true (empty string -> 0)
+
+alert(0 === false); // false (different types)
+
+
+// --- Strict non-equality !== ---
+alert(1 !== true); // true
+alert('1' !== 1);  // true
+alert(1 !== 1);    // false
+
+
+// --- Comparison with null and undefined ---
+alert(null === undefined); // false (different types)
+alert(null == undefined);  // true (special case)
+
+// Math and comparison operators convert null/undefined to numbers
+alert(null > 0);  // false
+alert(null == 0); // false
+alert(null >= 0); // true
+
+// undefined comparisons
+alert(undefined > 0);  // false
+alert(undefined < 0);  // false
+alert(undefined == 0); // false
+
+
+// --- Safe practice reminder ---
+// Always check for null/undefined explicitly before comparing:
+let value = null;
+if (value == null) {
+  alert("Value is null or undefined");
+} else if (value >= 0) {
+  alert("Value is non-negative");
+} else {
+  alert("Value is negative");
+}
