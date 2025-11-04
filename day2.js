@@ -112,3 +112,97 @@ do {
 for(;i<10;i++){
   console.log(i)
 }
+
+
+
+// 1. *Reverse a string*  
+//   Input: "hello" → Output: "olleh"
+
+function strReverse(str){
+let reverse=''
+  for(i of str){
+      reverse=i+reverse;
+  }
+  return reverse
+}
+console.log(strReverse("hello"))
+
+
+// 2. *Capitalize first letter*  
+//   Input: "javascript" → Output: "Javascript"
+function capitalizeFisrt(str){
+  let result=''
+  for(i in str){
+    if(i==0){
+      result+=str[i].toUpperCase()
+    }else{
+      result+=str[i]
+    }
+  }
+  return result;
+}
+console.log(capitalizeFisrt("javascript"))
+// 3. *Count vowels in a string*  
+//   Input: "hello" → Output: 2
+function countVowels(str){
+  let count=0;
+  for(i of str){
+    if(i.toLowerCase()=="a"||i.toLowerCase()=="e"||i.toLowerCase()=="i"||i.toLowerCase()=="o"||i.toLowerCase()=="u"){
+      count++
+    }
+  }
+  return count;
+}
+console.log(countVowels("javascript"))
+
+// 4. *Check for palindrome*  
+//   Input: "madam" → Output: true
+function isPalindrome(str){
+    let len = str.length;
+  for (i = 0; i < len / 2; i++) {
+    if (str[i] !== str[len - 1 - i]) {
+      return false;
+    }
+  }
+  return true;
+}
+console.log(isPalindrome("madam"))
+
+// 5. *Replace all spaces with dashes*  
+//   Input: "hello world" → Output: "hello-world"
+function replaceDash(str){
+  let result=""
+  for(i of str){
+    if(i ==" "){
+      result+="-"
+    }else{
+      result+=i
+    }
+  }
+  return result;
+}
+console.log(replaceDash("ja vas cript"))
+
+// 6. *Find the longest word in a sentence*  
+//   Input: "I love programming" → Output: "programming"
+
+function largestWord(str){
+  let arr=str.split(' ')
+  let result="";
+  for(i of arr){
+    if(result.length<i.length){
+      result=i
+    }
+  }
+  return result;
+}
+console.log(largestWord("helloaaddffssd javascript"))
+
+function repeatStr(str,n){
+  let result=""
+  for(i=0;i<n;i++){
+    result+=str
+  }
+  return result;
+}
+console.log(repeatStr("abc",3))
