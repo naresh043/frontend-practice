@@ -197,7 +197,8 @@ function largestWord(str){
   return result;
 }
 console.log(largestWord("helloaaddffssd javascript"))
-
+// 7.*Repeat a string N times*  
+//   Input: "abc", 3 → Output: "abcabcabc"
 function repeatStr(str,n){
   let result=""
   for(i=0;i<n;i++){
