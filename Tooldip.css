@@ -81,7 +81,7 @@
 .secoundary-color .tooltip-text,
 .accent-color .tooltip-text,
 .info-color .tooltip-text{
-  visibility: visible !important;
+  /* visibility: visible !important; */
 }
 .neutral-color .btn {
   background-color: black;
@@ -104,4 +104,17 @@
 .info-color .btn,.info-color .tooltip-text{
     background-color: oklch(74% .16 232.661);
     color: black;
+}
+.success-color .btn,.success-color .tooltip-text{
+  background-color: oklch(76% .177 163.223);
+  color: black;
+}
+
+.warning-color .btn,.warning-color .tooltip-text{
+  background-color: oklch(82% .189 84.429);
+  color: black;
+}
+.error-color .btn,.error-color .tooltip-text{
+  background-color: oklch(82% .189 84.429);
+  color: black;
 }
