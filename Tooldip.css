@@ -1,12 +1,19 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+}
 .tooltip {
   position: relative;
-  display: inline-block;  
-  margin-top: 20px;  
+  display: inline-block;
+  margin-top: 20px;
 }
 
 .btn {
   padding: 8px 16px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -30,9 +37,41 @@
   visibility: visible;
   opacity: 1;
 }
-.wow{
-    color: coral !important;
+.wow {
+  color: coral !important;
 }
-.force-open{
-visibility: visible !important;
+.force-open {
+  visibility: visible !important;
+}
+
+/* bottom */
+.tooltip-bottom,
+.tooltip-left,.tooltip-right {
+  position: relative;
+  display: inline-block;
+}
+.common {
+  background: black;
+  color: wheat;
+  width: 80px;
+  padding: 5px 0;
+  text-align: center;
+  border-radius: 10px;
+}
+.tooltip-bottom .tooltip-text {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tooltip-left .tooltip-text {
+  position: absolute;
+  top: 0%;
+  right: 100%;
+
+}
+.tooltip-right .tooltip-text {
+  position: absolute;
+  top: 0%;
+  left: 100%;
 }
