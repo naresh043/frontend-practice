@@ -115,6 +115,6 @@
   color: black;
 }
 .error-color .btn,.error-color .tooltip-text{
-  background-color: oklch(82% .189 84.429);
+  background-color:oklch(71% .194 13.428);
   color: black;
 }
