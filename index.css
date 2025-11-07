@@ -4,7 +4,7 @@
 }
 body{
     border: 2px solid;
-    height: 90vh;
+    height: 300vh;
     width: 90vw;
 }
 .realative{
@@ -25,4 +25,23 @@ top:20px;
     background-color: green;
     position: absolute;
     bottom: 0px;
+}
+
+.fixed{
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    border: 2px solid ;
+    background-color: blueviolet;
+    border-radius: 10px;
+}
+.sticky{
+    position: sticky;
+    top: 0px;
+    padding: 20px;
+    border-radius: 10px ;
+    background-color: skyblue;
+    text-align: center;
+
 }
