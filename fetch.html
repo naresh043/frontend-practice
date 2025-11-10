@@ -3,30 +3,94 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Filter Products</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+      }
+    </style>
   </head>
   <body>
-    <input onchange="handleUserInput(event)" type="text" />
-    <button onclick="handleSubmit(event)">Submit</button>
+    <h2>Product Search</h2>
+    <input onchange="handleUserInput(event)" type="text" placeholder="Enter product name..." />
+    <button onclick="handleSubmit(event)">Search</button>
+
+    <div id="result"></div>
 
     <script>
       let userInput = "";
 
       const handleUserInput = (e) => {
         userInput = e.target.value;
-        console.log("User Input:", userInput);
       };
 
-      const handleSubmit = (e) => {
+      const handleSubmit = () => {
         fetch("https://fakestoreapi.com/products")
           .then((response) => response.json())
           .then((data) => {
-            // filter products based on title
             const filteredArray = data.filter((item) =>
               item.title.toLowerCase().includes(userInput.toLowerCase())
             );
-            console.log("Filtered Result:", filteredArray);
+
+            displayTable(filteredArray);
           });
+      };
+
+      const displayTable = (products) => {
+        const resultDiv = document.getElementById("result");
+
+        if (products.length === 0) {
+          resultDiv.innerHTML = "<p>No products found.</p>";
+          return;
+        }
+
+        let tableHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+
+        products.forEach((item) => {
+          tableHTML += `
+            <tr>
+              <td>${item.id}</td>
+              <td><img src="${item.image}" alt="${item.title}" /></td>
+              <td>${item.title}</td>
+              <td>$${item.price}</td>
+              <td>${item.category}</td>
+            </tr>
+          `;
+        });
+
+        tableHTML += `
+            </tbody>
+          </table>
+        `;
+
+        resultDiv.innerHTML = tableHTML;
       };
     </script>
   </body>
