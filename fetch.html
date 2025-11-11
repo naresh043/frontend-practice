@@ -10,14 +10,14 @@
     <button onclick="handleSubmit(event)">Submit</button>
 
     <script>
-    //   let input = prompt("Enter ur name : ");
+      //   let input = prompt("Enter ur name : ");
 
-    //   const names = ["Rahul", "Priya", "Arjun", "Sneha", "Vikram"];
+      //   const names = ["Rahul", "Priya", "Arjun", "Sneha", "Vikram"];
 
-    //   const filteredArray = names.filter((item) =>
-    //     item.toLowerCase().includes(input)
-    //   );
-    //   console.log(filteredArray);
+      //   const filteredArray = names.filter((item) =>
+      //     item.toLowerCase().includes(input)
+      //   );
+      //   console.log(filteredArray);
 
       let userInput = "";
 
@@ -37,6 +37,33 @@
             console.log("Filtered Result:", filteredArray);
           });
       };
+
+      function add(a, b) {
+        return a + b;
+      }
+
+      // Function for division
+      function divide(a, b) {
+        if (b === 0) {
+          return "Cannot divide by zero!";
+        }
+        return a / b;
+      }
+
+      // Calling the functions
+      let num1 = 10;
+      let num2 = 5;
+
+      let sum = add(num1, num2);
+      let result = divide(num1, num2);
+
+      // Display the results in console
+      console.log("Addition:", sum); // 15
+      console.log("Division:", result); // 2
+
+      // Or display on page
+      document.write("<b>Addition:</b> " + sum + "<br>");
+      document.write("<b>Division:</b> " + result);
     </script>
   </body>
 </html>
