@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Simple Calculator (Event Listeners)</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #f6f8fa;
+        color: #111;
+      }
+      .card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 22px;
+        box-shadow: 0 8px 22px rgba(20, 20, 20, 0.06);
+        width: 360px;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      input[type="number"] {
+        flex: 1;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+      }
+      button {
+        padding: 10px 12px;
+        border-radius: 6px;
+        border: 1px solid #d0d7de;
+        background: #f1f5f9;
+        cursor: pointer;
+        font-size: 15px;
+      }
+      button.primary {
+        background: #0366d6;
+        color: white;
+        border-color: #0356b6;
+      }
+      .buttons {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .result {
+        padding: 12px;
+        border-radius: 8px;
+        background: #fff8e1;
+        border: 1px solid #f0d87a;
+        font-weight: 600;
+      }
+      .error {
+        color: #b00020;
+        margin-top: 8px;
+        font-size: 14px;
+      }
+      label {
+        font-size: 14px;
+        margin-bottom: 6px;
+        display: block;
+      }
+      .ops-toggle {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+      .ops-toggle button {
+        flex: 1;
+      }
+      .ops-toggle button.active {
+        background: #0366d6;
+        color: #fff;
+        border-color: #0356b6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card" role="application" aria-labelledby="title">
+      <h2 id="title">Calculator — add · subtract · multiply</h2>
+
+      <label for="a">First number</label>
+      <input id="a" type="number" inputmode="decimal" placeholder="e.g. 12.5" />
+
+      <label for="b" style="margin-top: 8px">Second number</label>
+      <input id="b" type="number" inputmode="decimal" placeholder="e.g. 3" />
+
+      <!-- operation selection (optional; used for Enter key) -->
+      <div class="ops-toggle" role="tablist" aria-label="Operation selection">
+        <button id="op-add" class="active" type="button" aria-pressed="true">
+          Add
+        </button>
+        <button id="op-sub" type="button" aria-pressed="false">Subtract</button>
+        <button id="op-mul" type="button" aria-pressed="false">Multiply</button>
+      </div>
+
+      <div class="buttons" role="group" aria-label="Operations">
+        <button id="btnAdd" class="primary" type="button">Add</button>
+        <button id="btnSub" type="button">Subtract</button>
+        <button id="btnMul" type="button">Multiply</button>
+      </div>
+
+      <div id="result" class="result" aria-live="polite">
+        Result will appear here
+      </div>
+      <div
+        id="error"
+        class="error"
+        aria-live="assertive"
+        style="display: none"
+      ></div>
+    </div>
+
+    <script>
+      // Element refs
+      const aInput = document.getElementById("a");
+      const bInput = document.getElementById("b");
+      const btnAdd = document.getElementById("btnAdd");
+      const btnSub = document.getElementById("btnSub");
+      const btnMul = document.getElementById("btnMul");
+      const resultEl = document.getElementById("result");
+      const errorEl = document.getElementById("error");
+
+      // Operation toggle buttons (for keyboard Enter)
+      const opAdd = document.getElementById("op-add");
+      const opSub = document.getElementById("op-sub");
+      const opMul = document.getElementById("op-mul");
+      let currentOp = "add"; // default
+
+      // Helper: get numeric values and validate
+      function getNumbers() {
+        const aVal = aInput.value.trim();
+        const bVal = bInput.value.trim();
+
+        if (aVal === "" || bVal === "") {
+          throw new Error("Both inputs must have values.");
+        }
+
+        const a = Number(aVal);
+        const b = Number(bVal);
+
+        if (!isFinite(a) || !isFinite(b)) {
+          throw new Error("Please enter valid numbers.");
+        }
+
+        return { a, b };
+      }
+
+      // Helper: show result or error
+      function showResult(text) {
+        resultEl.textContent = text;
+        resultEl.style.display = "";
+        errorEl.style.display = "none";
+      }
+      function showError(text) {
+        errorEl.textContent = text;
+        errorEl.style.display = "";
+        resultEl.textContent = "—";
+      }
+
+      // Actual calculation functions
+      function handleAdd(event) {
+        try {
+          const { a, b } = getNumbers();
+          const r = a + b;
+          showResult(`${a} + ${b} = ${r}`);
+        } catch (err) {
+          showError(err.message);
+        }
+      }
+
+      function handleSub(event) {
+        try {
+          const { a, b } = getNumbers();
+          const r = a - b;
+          showResult(`${a} − ${b} = ${r}`);
+        } catch (err) {
+          showError(err.message);
+        }
+      }
+
+      function handleMul(event) {
+        try {
+          const { a, b } = getNumbers();
+          const r = a * b;
+          showResult(`${a} × ${b} = ${r}`);
+        } catch (err) {
+          showError(err.message);
+        }
+      }
+
+      // Attach event listeners to buttons
+      btnAdd.addEventListener("click", handleAdd);
+      btnSub.addEventListener("click", handleSub);
+      btnMul.addEventListener("click", handleMul);
+
+      // Operation toggle buttons (update currentOp and visual state)
+      function setOp(op) {
+        currentOp = op;
+        [opAdd, opSub, opMul].forEach((btn) => {
+          btn.classList.toggle("active", btn.id === `op-${op}`);
+          btn.setAttribute("aria-pressed", btn.id === `op-${op}`);
+        });
+      }
+      opAdd.addEventListener("click", () => setOp("add"));
+      opSub.addEventListener("click", () => setOp("sub"));
+      opMul.addEventListener("click", () => setOp("mul"));
+
+      // Keyboard: Enter triggers the currently selected operation
+      function onEnterTrigger(e) {
+        if (e.key === "Enter") {
+          // Prevent form submission (there is no form, but good to be explicit)
+          e.preventDefault();
+          if (currentOp === "add") handleAdd();
+          else if (currentOp === "sub") handleSub();
+          else handleMul();
+        }
+      }
+      aInput.addEventListener("keydown", onEnterTrigger);
+      bInput.addEventListener("keydown", onEnterTrigger);
+
+      // Friendly initial message
+      showResult("Enter two numbers and choose an operation (or press Enter).");
+    </script>
+  </body>
+</html>
